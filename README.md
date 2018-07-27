@@ -5,7 +5,7 @@ allowing devOps teams to enforce deploy-time image security policies using metad
 
 You can read the [Kritis whitepaper](https://github.com/Grafeas/Grafeas/blob/master/case-studies/binary-authorization.md) for more details.
 
-Note: Currently kritis doesn't use grafeas and pulls vulnerability informtation via the [Container Analysis API](https://cloud.google.com/container-analysis/api/reference/rest/).
+Note: Currently kritis doesn't use grafeas and pulls vulnerability information via the [Container Analysis API](https://cloud.google.com/container-analysis/api/reference/rest/).
 
 ## Installing Kritis
 
@@ -17,7 +17,7 @@ Instructions for installing kritis on your cluster via helm can be found [here](
 
 Kritis relies on user defined `ImageSecurityPolicies` to determine whether a pod should be admitted or denied at deploy time.
 
-First, you will need to specify an `ImageSecurityPolicy`. 
+First, you will need to specify an `ImageSecurityPolicy` in yaml. 
 A sample is shown here:
 ```yaml
 apiVersion: kritis.grafeas.io/v1beta1
@@ -106,7 +106,7 @@ $ kubectl create -f integration/testdata/nginx/nginx-no-digest.yaml
 
 An image with violation that exceed the max severity defined in the image security policy will also be denied:
 ```
-kubectl create -f integration/testdata/java/java-with-vuln.yaml 
+$ kubectl create -f integration/testdata/java/java-with-vuln.yaml 
     Error from server: error when creating "integration/testdata/java/java-with-vuln.yaml ": admission webhook 
     "kritis-validation-hook.grafeas.io" denied the request: found violations in 
     gcr.io/kritis-int-test/java-with-vuln@sha256:b3f3eccfd27c9864312af3796067e7db28007a1566e1e042c5862eed3ff1b2c8
